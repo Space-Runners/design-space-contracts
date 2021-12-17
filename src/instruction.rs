@@ -7,4 +7,7 @@ use crate::state::*;
 pub enum AppInstruction {
     /// Create a proposal
     Create,
+
+    /// Vote and stake token
+    Upvote(UpvoteArgs),
 }
