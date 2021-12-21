@@ -10,4 +10,7 @@ pub enum AppInstruction {
 
     /// Vote and stake token
     Upvote(UpvoteArgs),
+
+    /// Redeem their tokens, Voter and Creator
+    Redeem,
 }
