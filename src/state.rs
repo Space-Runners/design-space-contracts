@@ -62,3 +62,30 @@ impl ProposalData {
     }
 }
 
+// ======== ======== ======== ======== ======== ======== ======== ========
+
+#[repr(C)]
+#[derive(BorshSerialize, BorshDeserialize, Clone, Copy, Debug, Default, PartialEq)]
+pub struct UpvoteArgs {
+    /// Power of vote
+    pub power: u64,
+}
+
+#[repr(C)]
+#[derive(Clone, BorshSerialize, BorshDeserialize, Copy, Debug, Default, PartialEq)]
+pub struct VoteData {
+    pub voter: Pubkey,
+    pub amount: u64, // 100,000,000 total supply, 6 decimals
+    pub is_done: bool,
+}
+
+impl VoteData {
+    pub const LEN: usize = 32 + 8 + 1;
+
+    pub fn from_account_info(a: &AccountInfo) -> Result<VoteData, ProgramError> {
+        if a.data_len() != Self::LEN {
+            return Err(ProgramError::InvalidAccountData);
+        }
+        try_from_slice_unchecked(&a.data.borrow_mut()).map_err(|_| ProgramError::InvalidAccountData)
+    }
+}
