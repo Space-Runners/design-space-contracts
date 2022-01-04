@@ -12,3 +12,5 @@ pub mod utils;
 pub mod entrypoint;
 
 pub const PREFIX: &str = "space_runners";
+
+solana_program::declare_id!("spacR3JQmQ2gSQM4XPHs6XkRNAh2gYPKRB35xJ78rVr");
